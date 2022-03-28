@@ -20,9 +20,1064 @@ tags:
     description: The service that supports the management of inspection templates
 paths:
   /buildings:
+    get:
+      tags:
+        - Building Management
+      summary: Returns a list of the buildings managed by BIT
+      operationId: get_buildings
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+           application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Building'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    post:
+      tags:
+        - Building Management
+      summary: Create a new building
+      operationId: create_building
+      requestBody:
+        description: Building contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Building'
+      responses:
+        '201':
+          description: new building created
+  /buildings/{building_id}:
+    get:
+      tags:
+        - Building Management
+      summary: Returns a building with building_id
+      operationId: get_building
+      parameters:
+      - name: building_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Building'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    put:
+      tags:
+        - Building Management
+      summary: Update a building at building_id
+      operationId: update_building
+      parameters:
+      - name: building_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Building contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Building'
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+    delete:
+      tags:
+        - Building Management
+      summary: Delete a building with building_id
+      operationId: delete_building
+      parameters:
+      - name: building_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+  /buildings/{building_id}/inspections:
+    post:
+      tags:
+        - Building Management
+      summary: Associate inspections to a building
+      operationId: add_inspection
+      parameters:
+      - name: building_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: inspection associated
+  /buildings/{building_id}/inspections/{inspection_id}:
+    delete:
+      tags:
+        - Building Management
+      summary: Delete a building inspection with inspection_id at building_id
+      operationId: delete_inspection_at_building
+      parameters:
+      - name: building_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: inspection_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+  /buildings/{building_id}/inspection-templates:
+    post:
+      tags: 
+      - Building Management
+      summary: Associate an inspection template with a building with building_id
+      operationId: add_inspection_template
+      parameters:
+      - name: building_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Inspection Tenplate contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InspectionTemplate'
+      responses:
+        '201':
+          description: inspection template associated
+  /buildings/{building_id}/inspection-templates/{inspection_template_id}:
+    delete:
+      tags:
+        - Building Management
+      summary: Delete an inspection template with inspection_template_id from a building with building_id
+      operationId: delete_inspection_at_building
+      parameters:
+      - name: building_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: inspection_template_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
   /inspections:
+    get:
+      tags:
+        - Inspection Management
+      summary: Returns a list of the inspections managed by BIT
+      operationId: get_inspections
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+           application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Inspection'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    post:
+      tags: 
+      - Inspection Management
+      summary: Create an Inspection
+      operationId: create_inspection
+      parameters: []
+      requestBody:
+        description: Inspection contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inspection'
+      responses:
+        '201':
+          description: inspection created
+  /inspections/{inspection_id}:
+    get:
+      tags:
+        - Inspection Management
+      summary: Returns an inpection with inpection_id
+      operationId: get_inspection
+      parameters:
+      - name: inspection_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inspection'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    put:
+      tags:
+        - Inspection Management
+      summary: Update a inspection at inspection_id
+      operationId: update_inspection
+      parameters:
+      - name: inspection_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Inspection contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Inspection'
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+    delete:
+      tags:
+        - Inspection Management
+      summary: Delete a inspection with inspection_id
+      operationId: delete_inspection
+      parameters:
+      - name: inspection_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+  /inspections/{inspection_id}/problems:
+    post:
+      tags: 
+      - Inspection Management
+      summary: Associate a problem with an inspection with inspection_id
+      operationId: add_problem
+      parameters:
+      - name: inspection_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: inspection template associated
+  /inspections/{inspection_id}/problems/{problem_id}:
+    delete:
+      tags:
+        - Inspection Management
+      summary: Delete a problem with problem_id at an inspection with inspection_id
+      operationId: delete_inspection
+      parameters:
+      - name: inspection_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: problem_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
   /problems:
+    get:
+      tags:
+        - Non-conformity Management
+      summary:  Returns a list of Non-conformities discovered during inspections
+      operationId: get_problems
+      parameters: []
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    post:
+      tags: 
+      - Non-conformity Management
+      summary: Create an Problem
+      operationId: create_problem
+      parameters: []
+      requestBody:
+        description: Problem contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Problem'
+      responses:
+        '201':
+          description: inspection created
+  /problems/{problem_id}:
+    get:
+      tags:
+        - Non-conformity Management
+      summary: Returns an problem with problem_id
+      operationId: get_problem
+      parameters:
+      - name: problem_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    put:
+      tags:
+        - Non-conformity Management
+      summary: Update a problem at problem_id
+      operationId: update_problem
+      parameters:
+      - name: problem_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Problem contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Problem'
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+    delete:
+      tags:
+        - Non-conformity Management
+      summary: Delete a problem with problem_id
+      operationId: delete_problem
+      parameters:
+      - name: problem_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+  /problems/{problem_id}/maintenance-work:
+    post:
+      tags:
+        - Non-conformity Management
+      summary: Associate a maintenance work that solved the problem with problem_id
+      operationId: add_maintenance_work
+      parameters:
+      - name: problem_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Maintenance work content
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/MaintenanceWork'
+      responses:
+        '201':
+          description: maintenance work associated
+  /problems/{problem_id}/maintenance-work/{maintenance_work_id}:
+    delete:
+      tags:
+        - Problem Management
+      summary: Delete a maintenance work with maintenance_work_id from a problem with problem_id
+      operationId: delete_maintenance_work_at_problem
+      parameters:
+      - name: problem_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
   /maintenance-works:
+    get:
+      tags:
+        - Project Management
+      summary:  Returns a list of Maintenance projects/works discovered during inspections
+      operationId: get_maintenance_works
+      parameters: []
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWork'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    post:
+      tags: 
+      - Project Management
+      summary: Create an maintenance project/work
+      operationId: create_maintenance_work
+      parameters: []
+      requestBody:
+        description: maintenance work contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceWork'
+      responses:
+        '201':
+          description: inspection created
+  /maintenance-works/{maintenance_work_id}:
+    get:
+      tags:
+        - Project Management
+      summary: Returns a maintenance work with maintenance_work_id
+      operationId: get_maintenance_work
+      parameters:
+      - name: maintenance_work_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWork'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    put:
+      tags:
+        - Project Management
+      summary: Update a maintenance work at maintenance_work_id
+      operationId: update_maintenance_work
+      parameters:
+      - name: maintenance_work_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Maintenance work contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceWork'
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+    delete:
+      tags:
+        - Project Management
+      summary: Delete a Maintenance work with maintenance_work_id
+      operationId: delete_maintenance_work
+      parameters:
+      - name: maintenance_work_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+  /maintenance-works/{maintenance_work_id}/contractors:
+    post:
+      tags:
+        - Project Maintenance
+      summary: Associate a contractor to a project
+      operationId: add_contractor
+      parameters:
+      - name: maintenance_work_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: inspection created
+  /maintenance-works/{maintenance_work_id}/contractors/{contractor_id}:
+    delete:
+      tags:
+        - Project Management
+      summary: Delete a contractor with contractor_id from a maintenance work
+      operationId: delete_crontractor_at_maintenance_work
+      parameters:
+      - name: maintenance_work_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: contractor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
   /contractors:
+    get:
+      tags:
+        - Partner Management
+      summary:  Returns a list of partners that work with BIT
+      operationId: get_contractors
+      parameters: []
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contractor'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    post:
+      tags: 
+      - Partner Management
+      summary: Create an Partner
+      operationId: create_partner
+      parameters: []
+      requestBody:
+        description: partner contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contractor'
+      responses:
+        '201':
+          description: inspection created
+  /contractors/{contractor_id}:
+    get:
+      tags:
+        - Partner Management
+      summary: Returns a contractor with contractor_id
+      operationId: get_contractor
+      parameters:
+      - name: contractor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contractor'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    put:
+      tags:
+        - Partner Management
+      summary: Update a contractor with contractor_id
+      operationId: update_contractor
+      parameters:
+      - name: contractor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Contractor contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contractor'
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+    delete:
+      tags:
+        - Partner Management
+      summary: Delete a Contractor work with contractor_id
+      operationId: delete_contractor
+      parameters:
+      - name: contractor_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+  /contractors/{contractor_id}/maintenance-works:
+    post:
+      tags: 
+      - Partner Management
+      summary: associate a maintenance work with a contractor
+      operationId: add_maintenance_work_at_contractor
+      parameters: []
+      requestBody:
+        description: maintenance work contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceWork'
+      responses:
+        '201':
+          description: inspection created
   /users:
+    get:
+      tags:
+        - Employee Management
+      summary:  Returns a list of users that work at BIT
+      operationId: get_users
+      parameters: []
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    post:
+      tags: 
+      - Employee Management
+      summary: Create an user
+      operationId: create_user
+      parameters: []
+      requestBody:
+        description: User contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: inspection created
+  /users/{user_id}:
+    get:
+      tags:
+        - Employee Management
+      summary: Returns a user with user_id
+      operationId: get_user
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    put:
+      tags:
+        - Employee Management
+      summary: Update a user with user_id
+      operationId: update_user
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: User contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+    delete:
+      tags:
+        - Employee Management
+      summary: Delete a User with user_id
+      operationId: delete_user
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+  /users/{user_id}/login: # TODO
+    get:
+      tags:
+        - Employee Management
+      summary:  Logs in a user
+      operationId: login
+      parameters: [] 
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+  /users/{user_id}/logout: # TODO
+    get:
+      tags:
+        - Employee Management
+      summary:  Logs out a user
+      operationId: logout
+      parameters: [] 
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
   /inspection-templates:
+    get:
+      tags:
+        - Template Management
+      summary:  Returns a list of templates defined by BIT
+      operationId: get_inspection_templates
+      parameters: []
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InspectionTemplate'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    post:
+      tags: 
+      - Template Management
+      summary: Create an inspection template
+      operationId: create_inspection_template
+      parameters: []
+      requestBody:
+        description: inspection template contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InspectionTemplate'
+      responses:
+        '201':
+          description: inspection created
+  /inspection-templates/inspection_template_id:
+    get:
+      tags:
+        - Template Management
+      summary: Returns a template with inspection_template_id
+      operationId: get_inspection_template
+      parameters:
+      - name: inspection_template_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InspectionTemplate'
+        '400':
+          description: Bad Request
+          content: {}
+        '404':
+          description: Resourse not found
+          content: {}
+    put:
+      tags:
+        - Template Management
+      summary: Update a inspection template with inspection_template_id
+      operationId: update_inspection_template
+      parameters:
+      - name: inspection_template_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: inspection Template contents
+        required: True
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InspectionTemplate'
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+    delete:
+      tags:
+        - Template Management
+      summary: Delete a inspection template with inspection_template_id
+      operationId: delete_inspection_template
+      parameters:
+      - name: inspection_template_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: operation successful
+        '204':
+          description: no content
+components:
+  schemas:
+    Building:
+      type: object
+      properties:
+        building_id:
+          type: string
+        description:
+          type: string
+        address:
+          type: string
+        image-uri:
+          type: string
+    Inspection:
+      type: object
+      properties:
+        inspection_id:
+          type: string
+        inspector_id:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        template:
+          $ref: '#/components/schemas/InspectionTemplate'
+    InspectionTemplate:
+      type: object
+      properties: 
+        template_id:
+          type: string
+        template_type:
+          type: string
+          enum:
+          - Electrical
+          - Plumbing
+          #etc
+    Problem:
+      type: object
+      properties:
+        problem_id:
+          type: string
+        building_id:
+          type: string
+        inspection_id:
+          type: string
+        description:
+          type: string
+    MaintenanceWork:
+      type: object
+      properties:
+        maintenance_work_id:
+          type: string
+        description:
+          type: string
+        maintenace_type:
+          type: string
+          enum:
+          - Construction Work
+          - Project
+          - Electrical Work
+          - Plumbing Work
+          # etc
+        parent:
+          $ref: '#/components/schemas/MaintenanceWork'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/MaintenanceWork'
+    Contractor:
+      type: object
+      properties:
+        contractor_id:
+          type: string
+        contractor_name:
+          type: string
+        contact:
+          type: string
+        lines_of_Work:
+          type: array
+          items:
+            type: string
+            enum:
+            - Construction
+            - Electrical
+            - Plumbing
+            # etc
+        nif:
+          type: string
+    User:
+      type: object
+      properties:
+        user_id:
+          type: string
+        name:
+          type: string
+        nif:
+          type: string
+        function:
+          type: string
+          enum:
+          - Manager
+          - Inspector
+          - Supervisor
+        image_uri:
+          type: string
