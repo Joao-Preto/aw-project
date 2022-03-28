@@ -1,0 +1,28 @@
+openapi: 3.0.1
+info:
+  title: Building Inspection Team (BIT) management services
+  description: The specification of the services necessary to support BIT operations
+  version: 1.0.0
+tags:
+  - name: Building Management
+    description: The service that supports the management of buildings
+  - name: Inspection Management
+    description: The service that supports the management of inspections
+  - name: Non-conformity Management
+    description: The service that supports the management of non-conformities
+  - name: Project Management
+    description: The service that supports the management of maintenance projects/works
+  - name: Partner Management
+    description: The service that supports the management of comercial partners (contractors)
+  - name: Employee Management
+    description: The service that supports the management of employees and their interaction with the system
+  - name: Template Management
+    description: The service that supports the management of inspection templates
+paths:
+  /buildings:
+  /inspections:
+  /problems:
+  /maintenance-works:
+  /contractors:
+  /users:
+  /inspection-templates:
