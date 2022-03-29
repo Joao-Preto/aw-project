@@ -465,7 +465,7 @@ paths:
   /problems/{problem_id}/maintenance-work/{maintenance_work_id}:
     delete:
       tags:
-        - Problem Management
+        - Non-conformity Management
       summary: Delete a maintenance work with maintenance_work_id from a problem with problem_id
       operationId: delete_maintenance_work_at_problem
       parameters:
@@ -582,7 +582,7 @@ paths:
   /maintenance-works/{maintenance_work_id}/contractors:
     post:
       tags:
-        - Project Maintenance
+        - Project Management
       summary: Associate a contractor to a project
       operationId: add_contractor
       parameters:
