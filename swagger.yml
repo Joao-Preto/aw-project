@@ -639,7 +639,7 @@ paths:
     post:
       tags: 
       - Partner Management
-      summary: Create an Partner
+      summary: Create a Partner
       operationId: create_partner
       parameters: []
       requestBody:
@@ -833,13 +833,23 @@ paths:
           description: operation successful
         '204':
           description: no content
-  /users/{user_id}/login: # TODO
+  /users/{user_id}/login: 
     get:
       tags:
         - Employee Management
       summary:  Logs in a user
       operationId: login
-      parameters: [] 
+      parameters:
+      - name: username
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: operation successful
@@ -853,7 +863,7 @@ paths:
         '404':
           description: Resourse not found
           content: {}
-  /users/{user_id}/logout: # TODO
+  /users/{user_id}/logout:
     get:
       tags:
         - Employee Management
@@ -1081,3 +1091,9 @@ components:
           - Supervisor
         image_uri:
           type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+security:
+ - basicAuth: []
