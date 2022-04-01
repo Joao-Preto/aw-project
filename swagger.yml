@@ -207,7 +207,22 @@ paths:
         - Inspection Management
       summary: Returns a list of the inspections managed by BIT
       operationId: get_inspections
-      parameters: []
+      parameters: 
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - created
+          - assigned
+          - completed
+          - addressed
+      - name: assignedTo
+        in: query
+        required: false
+        schema:
+          type: string
       responses:
         '200':
           description: successful operation
