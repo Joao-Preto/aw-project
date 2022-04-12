@@ -1,0 +1,37 @@
+{
+    "title": "Inspection",
+    "type": "object",
+    "required": [
+        "state",
+        "address"
+    ],
+    "properties": {
+        "state": {
+            "type": "string",
+            "default": "created",
+            "enum": [
+                "created",
+                "assigned",
+                "in progress",
+                "completed",
+                "addressed"
+            ]
+        },
+        "address": {
+            "type": "string",
+            "default": "Campo Grande 016, 1749-016 Lisboa"
+        },
+        "start_moment": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "end_moment": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "assigned_to":{
+            "type": "string",
+            "default": "João Silva"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "title": "User",
+    "type": "object",
+    "required": [
+        "user_id",
+        "password",
+        "name"
+    ],
+    "properties": {
+        "user_id": {
+            "type": "string"
+        },
+        "password": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "competencies": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

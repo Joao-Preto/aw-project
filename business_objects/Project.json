@@ -1,0 +1,40 @@
+{
+    "title": "Project",
+    "type": "object",
+    "required": [
+        "project_type",
+        "state",
+        "address"
+    ],
+    "properties": {
+        "project_type": {
+            "type": "string"
+        },
+        "state": {
+            "type": "string",
+            "default": "created",
+            "enum": [
+                "created",
+                "assigned",
+                "in progress",
+                "completed"
+            ]
+        },
+        "address": {
+            "type": "string",
+            "default": "Campo Grande 016, 1749-016 Lisboa"
+        },
+        "works": {
+            "type": "array",
+            "items": {
+                "type": "Work"
+            }
+        },
+        "contractor_descriptor": {
+            "type": "string"
+        },
+        "contractor_contact": {
+            "type": "string"
+        }
+    }
+}

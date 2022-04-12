@@ -1,0 +1,34 @@
+{
+    "title": "Work",
+    "type": "object",
+    "required": [
+        "work_type",
+        "state",
+        "address"
+    ],
+    "properties": {
+        "work_type": {
+            "type": "string"
+        },
+        "state": {
+            "type": "string",
+            "default": "created",
+            "enum": [
+                "created",
+                "assigned",
+                "in progress",
+                "completed"
+            ]
+        },
+        "address": {
+            "type": "string",
+            "default": "Campo Grande 016, 1749-016 Lisboa"
+        },
+        "contractor_descriptor": {
+            "type": "string"
+        },
+        "contractor_contact": {
+            "type": "string"
+        }
+    }
+}

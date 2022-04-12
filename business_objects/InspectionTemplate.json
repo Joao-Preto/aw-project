@@ -1,0 +1,72 @@
+{
+  "title": "InspectionTemplate",
+  "type": "object",
+  "required": [
+    "address",
+    "periodicity",
+    "components",
+    "type"
+  ],
+  "properties": {
+    "address": {
+      "type": "string",
+      "description": "Address of the building corresponding to the template",
+      "default": "Campo Grande 016, 1749-016 Lisboa"
+    },
+    "periodicity": {
+      "type": "integer",
+      "description": "The amount of time between each inspection in weeks",
+      "default": 8
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of inspection to be performed",
+      "default": "Electrical"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "component_name": {
+            "type": "string",
+            "default": "Office A1"
+          },
+          "description": {
+            "type": "string",
+            "default": "A single office with provisions necessary for the work of one employee."
+          },
+          "conformity_conditions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "condition_name": {
+                  "type": "string",
+                  "default": "power socket safety"
+                },
+                "description": {
+                  "type": "string",
+                  "default": "Check safety of the power sockets in the office."
+                },
+                "standards": {
+                  "type": "object",
+                  "properties": {
+                    "standard_name": {
+                      "type": "string",
+                      "default": "socket #1 cover safety"
+                    },
+                    "standard_definition": {
+                      "type": "string",
+                      "default": "Socket #1 cover must have a plastic cover with a spring working correctly."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
